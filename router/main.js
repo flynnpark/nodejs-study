@@ -1,8 +1,12 @@
 module.exports = function(app, fs) {
     app.get('/', function(req, res) {
+        var sess = req.session;
+
         res.render('index', {
             title: "MY HOMEPAGE",
-            length: 5
+            length: 5,
+            name: sess.name,
+            username: sess.username,
         });
     });
 
@@ -41,7 +45,7 @@ module.exports = function(app, fs) {
         sess = req.sess;
 
         if (sess.username) {
-            req.session.destroy(functioc(err) {
+            req.session.destroy(function(err) {
                 if (err) {
                     console.log(err);
                 } else {
